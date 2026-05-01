@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Stok Bahan Ajar - SITTA UT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar & Header */
+        .navbar {
+            background-color: #003366;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        /* Tabel Stok */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #003366;
+            color: white;
+        }
+
+        /* CSS MODAL DUA KOLOM (Tanpa Scroll) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh; 
+            position: relative;
+            display: flex; /* Layout Kiri-Kanan */
+            overflow: hidden;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .modal-left {
+            flex: 1;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #detCover {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .modal-right {
+            flex: 1.2;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-right h2 {
+            margin-top: 0;
+            color: #003366;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #666;
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div><b>SITTA UT - Stok Bahan Ajar</b></div>
+        <div><a href="dashboard.html" style="color:white; text-decoration:none;">Dashboard</a> | Logout</div>
+    </div>
+
+    <div class="container">
+        <h2>Daftar Stok Bahan Ajar</h2>
+        <p>Klik pada <b>Nama Barang</b> untuk melihat detail lengkap tanpa scroll.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Barang</th>
+                </tr>
+            </thead>
+            <tbody id="tabelStok">
+                <!-- Data akan diisi otomatis oleh script.js -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MODAL DETAIL -->
+    <div id="modalDetail" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="tutupModal('modalDetail')">&times;</span>
+            
+            <div class="modal-left">
+                <img id="detCover" src="" alt="Cover Buku">
+            </div>
+
+            <div class="modal-right">
+                <h2>Informasi Detail</h2>
+                <p><span class="label">Nama</span>: <span id="detNama"></span></p>
+                <p><span class="label">Kode</span>: <span id="detKode"></span></p>
+                <p><span class="label">Lokasi</span>: <span id="detLokasi"></span></p>
+                <p><span class="label">Jenis</span>: <span id="detJenis"></span></p>
+                <p><span class="label">Edisi</span>: <span id="detEdisi"></span></p>
+                <p><span class="label">Stok</span>: <span id="detStok"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASTIKAN URUTAN PEMANGGILAN INI BENAR -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
